@@ -9,6 +9,8 @@ from pickled_object_field import PickledObjectField
 from model_name_field import ModelNameField
 from template_field import TemplateTextField, TemplateCharField
 
+import south_rules
+
 class FormDefinition(models.Model):
     name = models.SlugField(_('Name'), max_length=255, unique=True)
     title = models.CharField(_('Title'), max_length=255, blank=True, null=True)
