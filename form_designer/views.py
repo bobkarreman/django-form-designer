@@ -16,6 +16,14 @@ class DesignedForm(forms.Form):
             self.add_defined_field(def_field, initial_data)
         self.fields[form_definition.submit_flag_name] = forms.BooleanField(required=False, initial=1, widget=widgets.HiddenInput)
 
+        # Little change to support HTML5 placeholders for TextInput Fields
+        for field_name in self.fields:  
+            field = self.fields.get(field_name)  
+            if field:
+                if field.widget.__class__.__name__ == 'TextInput':
+                # if type(field.widget) == TextInput:  
+                    field.widget.attrs["placeholder"] = field.help_text
+
     def add_defined_field(self, def_field, initial_data=None):
         if initial_data and initial_data.has_key(def_field.name):
             if not def_field.field_class in ('forms.MultipleChoiceField', 'forms.ModelMultipleChoiceField'):
