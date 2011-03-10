@@ -20,7 +20,7 @@ class DesignedForm(forms.Form):
         for field_name in self.fields:  
             field = self.fields.get(field_name)  
             if field:
-                if field.widget.__class__.__name__ == 'TextInput':
+                if field.widget.__class__.__name__ == 'TextInput' || field.widget.__class__.__name__ == 'TextArea':
                 # if type(field.widget) == TextInput:  
                     field.widget.attrs["placeholder"] = field.help_text
 
